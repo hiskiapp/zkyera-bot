@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const fs = require("fs")
 const chalk = require("chalk")
 
@@ -12,9 +14,9 @@ global.APIs = {
 
 // Apikey
 global.APIKeys = {
-    'https://zenzapis.xyz': '36F2874241',
+    'https://zenzapis.xyz': process.env.ZENZAPIS_KEY,
 }
-
+console.log(APIKeys);
 // Other
 global.options = {
     autoRead: true,
@@ -23,7 +25,7 @@ global.options = {
 }
 
 global.prefa = /^[zZ#$+.?_&<>!/\\]/
-global.owner = ["6285777727179", "6287893136261", "6285155064115", "6281390645409", "6281216351929", "6287851766722"]
+global.owner = process.env.OWNER_NUMBER.split(',')
 global.sessionName = {
     legacy: "/tmp/zkyera-legacy",
     multi: "/tmp/zkyera-multi"
@@ -31,8 +33,6 @@ global.sessionName = {
 
 global.packname = "zkyera"
 global.author = "ZKY ERA"
-
-global.notion_secret = "secret_QK8lDnFeY9XuZBkUzfOn3NQTbxwAckFaSGe32eiNJEp"
 
 global.mess = (type, m) => {
     let msg = {

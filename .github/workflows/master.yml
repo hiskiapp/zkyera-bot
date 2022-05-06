@@ -1,0 +1,25 @@
+name: Master
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: SSH to Deploy Server
+      uses: appleboy/ssh-action@master
+      timeout-minutes: 120
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: |
+          cd ~/apps/zkyera-bot
+          git pull origin master
+          ~/.nvm/versions/node/v16.15.0/bin/npm install
+          pm2 start zkyera
