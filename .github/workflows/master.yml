@@ -22,4 +22,4 @@ jobs:
           cd ~/apps/zkyera-bot
           git pull origin master
           ~/.nvm/versions/node/v16.15.0/bin/npm install
-          pm2 start zkyera
+          ~/.nvm/versions/node/v16.15.0/bin/pm2 start zkyera
